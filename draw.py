@@ -3,16 +3,22 @@ from matrix import *
 
 
 def add_polygon( polygons, x0, y0, z0, x1, y1, z1, x2, y2, z2 ):
-    pass
+    add_edge( polygons, x0, y0, z0, x1, y1, z1 )
+    add_edge( polygons, x1, y1, z1, x2, y2, z2 )
+    add_edge( polygons, x2, y2, z2, x0, y0, z0 )
 
 def draw_polygons( polygons, screen, color ):
-    pass
+    for polygon in polygons:
+        draw_line( polygon[0], polygon[1], polygon[2], polygon[3], screen, color )
 
 
 def add_box( polygons, x, y, z, width, height, depth ):
     x1 = x + width
     y1 = y - height
     z1 = z - depth
+
+    #frontnew
+    add_polygon( polygons, x, y1, z, x1, y, z, x, y ,z )
 
     #front
     add_edge(polygons, x, y, z, x1, y, z)
@@ -157,16 +163,16 @@ def draw_lines( matrix, screen, color ):
                    int(matrix[point][1]),
                    int(matrix[point+1][0]),
                    int(matrix[point+1][1]),
-                   screen, color)    
+                   screen, color)
         point+= 2
-        
+
 def add_edge( matrix, x0, y0, z0, x1, y1, z1 ):
     add_point(matrix, x0, y0, z0)
     add_point(matrix, x1, y1, z1)
-    
+
 def add_point( matrix, x, y, z=0 ):
     matrix.append( [x, y, z, 1] )
-    
+
 
 
 
@@ -190,7 +196,7 @@ def draw_line( x0, y0, x1, y1, screen, color ):
     if ( abs(x1-x0) >= abs(y1 - y0) ):
 
         #octant 1
-        if A > 0:            
+        if A > 0:
             d = A + B/2
 
             while x < x1:
