@@ -19,24 +19,27 @@ def add_box( polygons, x, y, z, width, height, depth ):
 
     #frontnew
     add_polygon( polygons, x, y1, z, x1, y, z, x, y ,z )
+    add_polygon( polygons, x, y1, z, x1, y1, z, x1, y ,z )
 
-    #front
-    add_edge(polygons, x, y, z, x1, y, z)
-    add_edge(polygons, x, y1, z, x1, y1, z)
-    add_edge(polygons, x1, y, z, x1, y1, z)
-    add_edge(polygons, x, y, z, x, y1, z)
+    #backnew
+    add_polygon( polygons, x1, y1, z1, x1, y, z1, x, y, z1 )
+    add_polygon( polygons, x, y1, z1, x1, y1, z1, x, y, z1 )
 
-    #back
-    add_edge(polygons, x, y, z1, x1, y, z1)
-    add_edge(polygons, x, y1, z1, x1, y1, z1)
-    add_edge(polygons, x1, y, z1, x1, y1, z1)
-    add_edge(polygons, x, y, z1, x, y1, z1)
+    #topnew
+    add_polygon( polygons, x, y, z, x1, y, z, x, y, z1 )
+    add_polygon( polygons, x1, y, z, x1, y, z1, x, y, z1 )
 
-    #sides
-    add_edge(polygons, x, y, z, x, y, z1)
-    add_edge(polygons, x1, y, z, x1, y, z1)
-    add_edge(polygons, x, y1, z, x, y1, z1)
-    add_edge(polygons, x1, y1, z, x1, y1, z1)
+    #botnew
+    add_polygon( polygons, x, y1, z, x1, y1, z1, x, y1, z1 )
+    add_polygon( polygons, x, y1, z, x1, y1, z, x1, y1, z1 )
+
+    #leftnew
+    add_polygon( polygons, x, y1, z, x, y, z1, x, y1, z1 )
+    add_polygon( polygons, x, y1, z, x, y1, z1, x, y, z1 )
+
+    #rightnew
+    add_polygon( polygons, x1, y1, z1, x1, y, z, x1, y, z1 )
+    add_polygon( polygons, x1, y1, z1, x1, y1, z, x1, y, z )
 
 def add_sphere(polygons, cx, cy, cz, r, step ):
     points = generate_sphere(cx, cy, cz, r, step)
