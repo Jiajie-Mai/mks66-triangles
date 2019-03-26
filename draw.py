@@ -34,7 +34,7 @@ def add_box( polygons, x, y, z, width, height, depth ):
     add_polygon( polygons, x, y1, z, x1, y1, z, x1, y1, z1 )
 
     #leftnew
-    add_polygon( polygons, x, y1, z, x, y, z1, x, y1, z1 )
+    add_polygon( polygons, x, y1, z, x, y, z, x, y, z1 )
     add_polygon( polygons, x, y1, z, x, y1, z1, x, y, z1 )
 
     #rightnew
@@ -50,16 +50,20 @@ def add_sphere(polygons, cx, cy, cz, r, step ):
     longt_stop = step
 
     step+= 1
+
     for lat in range(lat_start, lat_stop):
         for longt in range(longt_start, longt_stop+1):
             index = lat * step + longt
 
-            add_edge(polygons, points[index][0],
+            add_polygon(polygons, points[index][0],
                      points[index][1],
                      points[index][2],
                      points[index][0]+1,
                      points[index][1]+1,
-                     points[index][2]+1 )
+                     points[index][2]+1,
+                     points[index][0]+2,
+                     points[index][1]+2,
+                     points[index][2]+2 )
 
 def generate_sphere( cx, cy, cz, r, step ):
     points = []
