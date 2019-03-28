@@ -49,13 +49,7 @@ def add_sphere(polygons, cx, cy, cz, r, step ):
     longt_stop = step
 
     step+= 1
-'''
-    for longt in range(longt_start, longt_stop+1):
-        index = longt
-        add_point(points, points[index][0],
-                 points[index][1],
-                 points[index][2])
-'''
+
     for lat in range(lat_start, lat_stop):
         for longt in range(longt_start, longt_stop):
             index = lat * step + longt
@@ -70,6 +64,8 @@ def add_sphere(polygons, cx, cy, cz, r, step ):
                             points[index + step + 1][0],
                             points[index + step + 1][1],
                             points[index + step + 1][2])
+            elif index > len(polygons) % step - 2:
+                pass
             else:
                 add_polygon(polygons,
                             points[index][0],
@@ -81,31 +77,37 @@ def add_sphere(polygons, cx, cy, cz, r, step ):
                             points[index + step][0],
                             points[index + step][1],
                             points[index + step][2])
-                add_polygon(polygons,
-                            points[index + 1][0],
-                            points[index + 1][1],
-                            points[index + 1][2],
-                            points[index + step + 1][0],
-                            points[index + step + 1][1],
-                            points[index + step + 1][2],
-                            points[index + step][0],
-                            points[index + step][1],
-                            points[index + step][2])
+
 
 def generate_sphere( cx, cy, cz, r, step ):
+    points = []
+
+    rot_start = 0
+    rot_stop = step
+    circ_start = 0
+    circ_stop = step
+
+    for rotation in range(rot_start, rot_stop):
+        rot = rotation/float(step)
+        for circle in range(circ_start, circ_stop+1):
+            circ = circle/float(step)
+
+            x = r * math.cos(math.pi * circ) + cx
+            y = r * math.sin(math.pi * circ) * math.cos(2*math.pi * rot) + cy
+            z = r * math.sin(math.pi * circ) * math.sin(2*math.pi * rot) + cz
+
+            points.append([x, y, z])
+            #print 'rotation: %d\tcircle%d'%(rotation, circle)
+    return points
+
+def add_torus(polygons, cx, cy, cz, r0, r1, step ):
     points = generate_torus(cx, cy, cz, r0, r1, step)
 
     lat_start = 0
     lat_stop = step
     longt_start = 0
     longt_stop = step
-'''
-    for longt in range(longt_start, longt_stop):
-        index = longt
-        add_point(points, points[index][0],
-                 points[index][1],
-                 points[index][2])
-'''
+
     for lat in range(lat_start, lat_stop):
         for longt in range(longt_start, longt_stop):
             index = lat * step + longt
@@ -120,25 +122,6 @@ def generate_sphere( cx, cy, cz, r, step ):
                         points[index + step][0],
                         points[index + step][1],
                         points[index + step][2])
-
-def add_torus(polygons, cx, cy, cz, r0, r1, step ):
-    points = generate_torus(cx, cy, cz, r0, r1, step)
-
-    lat_start = 0
-    lat_stop = step
-    longt_start = 0
-    longt_stop = step
-
-    for lat in range(lat_start, lat_stop):
-        for longt in range(longt_start, longt_stop):
-            index = lat * step + longt
-
-            add_edge(polygons, points[index][0],
-                     points[index][1],
-                     points[index][2],
-                     points[index][0]+1,
-                     points[index][1]+1,
-                     points[index][2]+1 )
 
 def generate_torus( cx, cy, cz, r0, r1, step ):
     points = []
