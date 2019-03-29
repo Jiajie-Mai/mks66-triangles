@@ -42,7 +42,7 @@ def add_box( polygons, x, y, z, width, height, depth ):
     add_polygon( polygons, x1, y1, z1, x1, y1, z, x1, y, z )
 
 def add_sphere(polygons, cx, cy, cz, r, step ):
-points = generate_sphere(cx, cy, cz, r, step)
+    points = generate_sphere(cx, cy, cz, r, step)
 
     step += 1
 

@@ -1,8 +1,6 @@
 import math
 from display import *
 
-
-
 #vector functions
 #normalize vetor, should modify the parameter
 def normalize(vector):
@@ -18,11 +16,14 @@ def dot_product(a, b):
 #Calculate the surface normal for the triangle whose first
 #point is located at index i in polygons
 def calculate_normal(polygons, i):
-    x = polygons[i]
-    y = polygons[i + 1]
-    z = polygons[i + 2]
-    output = []
-    return output
+    vectorU = [polygons[i + 1][0] - polygons[i][0], polygons[i + 1][1] - polygons[i][1], polygons[i + 1][2] - polygons[i][2]]
+    vectorV = [polygons[i + 2][0] - polygons[i][0], polygons[i + 2][1] - polygons[i][1], polygons[i + 2][2] - polygons[i][2]]
+
+    normalX = vectorU[1] * vectorV[2] - vectorU[2] * vectorV[1]
+    normalY = vectorU[2] * vectorV[0] - vectorU[0] * vectorV[2]
+    normalZ = vectorU[0] * vectorV[1] - vectorU[1] * vectorV[0]
+
+    return [normalX, normalY, normalZ]
 
 
 def magnitude(vector):
