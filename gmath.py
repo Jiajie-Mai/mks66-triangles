@@ -4,7 +4,7 @@ from display import *
 #vector functions
 #normalize vetor, should modify the parameter
 def normalize(vector):
-    factor = math.sqrt(vector[0]**2 + vector[1]**2 + vector[2]**2)
+    magnitude = math.sqrt(vector[0]**2 + vector[1]**2 + vector[2]**2)
     vector[0] = vector[0]/magnitude
     vector[1] = vector[1]/magnitude
     vector[2] = vector[2]/magnitude
