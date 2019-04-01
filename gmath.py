@@ -1,12 +1,12 @@
 import math
 from display import *
 
-
+def magnitude(vector):
+    magnitude = math.sqrt(math.pow(vector[0], 2) + math.pow(vector[1], 2) + math.pow(vector[2], 2))
 
 #vector functions
 #normalize vetor, should modify the parameter
 def normalize(vector):
-    magnitude = math.sqrt(math.pow(vector[0], 2) + math.pow(vector[1], 2) + math.pow(vector[2], 2)) # magnitude is the sqrt(x^2 + y^2 + z^2)
     for i in vector:
         vector[i] = vector[i] / magnitude
 
