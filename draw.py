@@ -8,8 +8,19 @@ def add_polygon( polygons, x0, y0, z0, x1, y1, z1, x2, y2, z2 ):
     add_edge( polygons, x2, y2, z2, x0, y0, z0 )
 
 def draw_polygons( polygons, screen, color ):
-    for polygon in polygons:
-        draw_line( polygon[0], polygon[1], polygon[2], polygon[3], screen, color )
+    if len( polygons) < 3:
+        print ('Need at least 3 points to draw')
+        return
+    i = 0
+    while (i < len(polygons)-2):
+      surface = calculate_normal(polygons,i)
+      view = [0,0,1]
+      curl = (dot_product(view,surface) > 0)
+      if curl:
+        draw_line(int(polygons[i][0]),int(polygons[i][1]),int(polygons[i+1][0]),int(polygons[i+1][1]),screen,color)
+        draw_line(int(polygons[i+1][0]),int(polygons[i+1][1]),int(polygons[i+2][0]),int(polygons[i+2][1]),screen,color)
+        draw_line(int(polygons[i+2][0]),int(polygons[i+2][1]),int(polygons[i][0]),int(polygons[i][1]),screen,color)
+      i+=3
 
 
 def add_box( polygons, x, y, z, width, height, depth ):

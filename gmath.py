@@ -5,8 +5,9 @@ from display import *
 #normalize vetor, should modify the parameter
 def normalize(vector):
     factor = magnitude(vector)
-    for x in range(vector):
-        vector[x] /= factor
+    vector[0] = vector[0]/magnitude
+    vector[1] = vector[1]/magnitude
+    vector[2] = vector[2]/magnitude
 
 #Return the dot porduct of a . b
 def dot_product(a, b):
@@ -27,5 +28,5 @@ def calculate_normal(polygons, i):
 
 
 def magnitude(vector):
-    output = math.sqrt(vector[0] ** 2 + vector[1] ** 2 + vector[2] ** 2)
+    output = math.sqrt(vector[0]**2 + vector[1]**2 + vector[2]**2)
     return output
