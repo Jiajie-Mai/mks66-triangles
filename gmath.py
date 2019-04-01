@@ -4,7 +4,7 @@ from display import *
 #vector functions
 #normalize vetor, should modify the parameter
 def normalize(vector):
-    factor = magnitude(vector)
+    factor = math.sqrt(vector[0]**2 + vector[1]**2 + vector[2]**2)
     vector[0] = vector[0]/magnitude
     vector[1] = vector[1]/magnitude
     vector[2] = vector[2]/magnitude
@@ -25,8 +25,3 @@ def calculate_normal(polygons, i):
     vectorA = [point2[0] - point1[0], point2[1] - point1[1], point2[2] - point1[2]]
     vectorB = [point3[0] - point1[0], point3[1] - point1[1], point3[2] - point1[2]]
     return cross_product(output)
-
-
-def magnitude(vector):
-    output = math.sqrt(vector[0]**2 + vector[1]**2 + vector[2]**2)
-    return output
