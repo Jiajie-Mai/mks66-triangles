@@ -15,11 +15,26 @@ def draw_polygons( polygons, screen, color ):
     while (i < len(polygons)-2):
       surface = calculate_normal(polygons,i)
       view = [0,0,1]
-      curl = (dot_product(view,surface) > 0)
+      curl = (dot_product(surface,view) > 0)
       if curl:
-        draw_line(int(polygons[i][0]),int(polygons[i][1]),int(polygons[i+1][0]),int(polygons[i+1][1]),screen,color)
-        draw_line(int(polygons[i+1][0]),int(polygons[i+1][1]),int(polygons[i+2][0]),int(polygons[i+2][1]),screen,color)
-        draw_line(int(polygons[i+2][0]),int(polygons[i+2][1]),int(polygons[i][0]),int(polygons[i][1]),screen,color)
+          print(polygons[i][0])
+          print(polygons[i][1])
+          print(polygons[i+1][0])
+          print(polygons[i+1][1])
+
+          print(polygons[i+1][0])
+          print(polygons[i+1][1])
+          print(polygons[i+2][0])
+          print(polygons[i+2][1])
+
+          print(polygons[i+2][0])
+          print(polygons[i+2][1])
+          print(polygons[i][0])
+          print(polygons[i][1])
+          
+          draw_line(int(polygons[i][0]),int(polygons[i][1]),int(polygons[i+1][0]),int(polygons[i+1][1]),screen,color)
+          draw_line(int(polygons[i+1][0]),int(polygons[i+1][1]),int(polygons[i+2][0]),int(polygons[i+2][1]),screen,color)
+          draw_line(int(polygons[i+2][0]),int(polygons[i+2][1]),int(polygons[i][0]),int(polygons[i][1]),screen,color)
       i+=3
 
 

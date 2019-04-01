@@ -24,4 +24,4 @@ def calculate_normal(polygons, i):
     point3 = polygons[i + 2]
     vectorA = [point2[0] - point1[0], point2[1] - point1[1], point2[2] - point1[2]]
     vectorB = [point3[0] - point1[0], point3[1] - point1[1], point3[2] - point1[2]]
-    return cross_product(output)
+    return cross_product(vectorA, vectorB)
